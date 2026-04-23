@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login - Class Monitor Election</title>
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+  <div class="auth-container">
+    <div class="auth-card">
+      <div class="logo">&#x1F5F3;</div>
+      <h1>Class Monitor Election</h1>
+      <p class="subtitle">Sign in to cast your vote</p>
+
+      <% if (locals.registered) { %>
+        <div class="alert success">Registration successful! Please log in.</div>
+      <% } %>
+
+      <% if (error) { %>
+        <div class="alert error"><%= error %></div>
+      <% } %>
+
+      <form method="POST" action="/login">
+        <div class="field">
+          <label for="username">Username</label>
+          <input type="text" id="username" name="username" placeholder="Enter your username" required>
+        </div>
+        <div class="field">
+          <label for="password">Password</label>
+          <input type="password" id="password" name="password" placeholder="Enter your password" required>
+        </div>
+        <button type="submit" class="btn-primary">Sign In</button>
+      </form>
+
+      <p class="auth-link">Don't have an account? <a href="/register">Register here</a></p>
+    </div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Results - Class Monitor Election</title>
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+  <nav>
+    <span>Class Monitor Election</span>
+    <div>
+      <% if (isAdmin) { %><a href="/admin" class="btn-outline-sm">Admin</a><% } %>
+      <span class="user-badge"><%= username %></span>
+      <a href="/logout" class="btn-outline-sm">Logout</a>
+    </div>
+  </nav>
+
+  <main class="container">
+    <h1>Election Results</h1>
+
+    <% if (userVote) { %>
+      <div class="alert success">You voted for <strong><%= userVote %></strong>. Thank you!</div>
+    <% } %>
+
+    <div class="turnout">
+      <span><strong><%= totalVotes %></strong> / <%= totalVoters %> votes counted</span>
+      <div class="progress-bar"><div class="progress-fill" style="width:<%= totalVoters > 0 ? (totalVotes/totalVoters*100) : 0 %>%"></div></div>
+    </div>
+
+    <div class="results-list">
+      <% results.forEach(function(r, i) { %>
+        <div class="result-row <%= i === 0 && r.votes > 0 ? 'winner' : '' %>">
+          <div class="result-rank"><%= i + 1 %></div>
+          <div class="result-name"><%= r.name %></div>
+          <div class="result-bar-container">
+            <div class="result-bar" style="width:<%= totalVotes > 0 ? (r.votes/totalVotes*100) : 0 %>%"></div>
+            <span class="result-count"><%= r.votes %> vote<%= r.votes !== 1 ? 's' : '' %></span>
+          </div>
+        </div>
+      <% }) %>
+    </div>
+  </main>
+</body>
+</html>

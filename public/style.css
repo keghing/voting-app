@@ -1,0 +1,144 @@
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, sans-serif;
+  background: #f0f2f5;
+  color: #1a1a2e;
+  min-height: 100vh;
+}
+
+nav {
+  background: #1a1a2e;
+  color: #fff;
+  padding: 14px 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-weight: 600;
+  font-size: 15px;
+}
+
+nav a { color: #e0e0e0; text-decoration: none; margin-left: 12px; }
+nav a:hover { color: #fff; }
+
+.user-badge {
+  background: rgba(255,255,255,0.12);
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 13px;
+}
+
+.container { max-width: 800px; margin: 0 auto; padding: 32px 16px; }
+
+/* Auth */
+.auth-container {
+  display: flex; justify-content: center; align-items: center;
+  min-height: 100vh; padding: 16px;
+}
+.auth-card {
+  background: #fff; border-radius: 16px; padding: 40px 36px;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.08); width: 100%; max-width: 400px;
+  text-align: center;
+}
+.logo { font-size: 48px; margin-bottom: 8px; }
+.auth-card h1 { font-size: 24px; margin-bottom: 4px; }
+.subtitle { color: #666; margin-bottom: 24px; font-size: 14px; }
+.auth-link { margin-top: 20px; font-size: 14px; color: #666; }
+.auth-link a { color: #4361ee; text-decoration: none; font-weight: 500; }
+.auth-link a:hover { text-decoration: underline; }
+
+/* Forms */
+.field { margin-bottom: 16px; text-align: left; }
+.field label { display: block; font-size: 13px; font-weight: 600; margin-bottom: 4px; color: #333; }
+.field input {
+  width: 100%; padding: 10px 14px; border: 1.5px solid #d4d4d8;
+  border-radius: 8px; font-size: 15px; transition: border-color 0.15s;
+}
+.field input:focus { outline: none; border-color: #4361ee; }
+
+/* Buttons */
+.btn-primary {
+  background: #4361ee; color: #fff; border: none; padding: 12px 24px;
+  border-radius: 8px; font-size: 15px; font-weight: 600; cursor: pointer;
+  transition: background 0.15s; width: 100%;
+}
+.btn-primary:hover { background: #3a56d4; }
+.btn-large { padding: 14px 32px; font-size: 16px; }
+.btn-outline-sm {
+  background: none; border: 1px solid rgba(255,255,255,0.3); color: #e0e0e0;
+  padding: 4px 12px; border-radius: 6px; font-size: 13px; text-decoration: none;
+}
+.btn-outline-sm:hover { border-color: #fff; color: #fff; }
+.btn-danger {
+  background: #ef233c; color: #fff; border: none; padding: 10px 20px;
+  border-radius: 8px; font-size: 14px; font-weight: 600; cursor: pointer;
+}
+.btn-danger:hover { background: #d90429; }
+.btn-danger-sm {
+  background: none; border: 1px solid #ef233c; color: #ef233c;
+  padding: 3px 10px; border-radius: 6px; font-size: 12px; cursor: pointer;
+}
+.btn-danger-sm:hover { background: #ef233c; color: #fff; }
+
+/* Alerts */
+.alert { padding: 12px 16px; border-radius: 8px; margin-bottom: 20px; font-size: 14px; }
+.alert.error { background: #ffe5e5; color: #cc0000; border: 1px solid #ffcccc; }
+.alert.success { background: #e6ffe6; color: #006600; border: 1px solid #ccffcc; }
+
+/* Voting */
+.vote-header { margin-bottom: 24px; }
+.vote-header h1 { font-size: 22px; margin-bottom: 8px; }
+
+.turnout { margin-bottom: 20px; }
+.turnout span { font-size: 14px; color: #555; display: block; margin-bottom: 6px; }
+.progress-bar { height: 8px; background: #e0e0e0; border-radius: 4px; overflow: hidden; }
+.progress-fill { height: 100%; background: #4361ee; border-radius: 4px; transition: width 0.3s; }
+
+.candidate-grid { display: flex; flex-direction: column; gap: 8px; margin-bottom: 24px; }
+.candidate-card {
+  display: flex; align-items: center; gap: 12px;
+  background: #fff; padding: 14px 18px; border-radius: 10px;
+  border: 2px solid #e8e8ec; cursor: pointer; transition: all 0.15s;
+}
+.candidate-card:hover { border-color: #4361ee; background: #f8f9ff; }
+.candidate-card input[type="radio"] { width: 18px; height: 18px; accent-color: #4361ee; }
+.candidate-card:has(input:checked) { border-color: #4361ee; background: #eef0ff; }
+.candidate-name { font-weight: 500; font-size: 15px; }
+
+.vote-actions { text-align: center; }
+.vote-notice { font-size: 13px; color: #888; margin-bottom: 12px; }
+
+/* Results */
+.results-list { display: flex; flex-direction: column; gap: 6px; }
+.result-row {
+  display: flex; align-items: center; gap: 12px;
+  background: #fff; padding: 12px 16px; border-radius: 8px;
+  border-left: 3px solid transparent;
+}
+.result-row.winner { border-left-color: #f59e0b; background: #fffbeb; }
+.result-rank { font-weight: 700; color: #888; min-width: 28px; font-size: 14px; }
+.result-row.winner .result-rank { color: #f59e0b; }
+.result-name { min-width: 160px; font-weight: 500; font-size: 14px; }
+.result-bar-container { flex: 1; position: relative; height: 28px; display: flex; align-items: center; }
+.result-bar {
+  height: 24px; background: #4361ee; border-radius: 6px;
+  transition: width 0.5s; min-width: 0; max-width: 100%;
+}
+.result-row.winner .result-bar { background: #f59e0b; }
+.result-count { position: absolute; left: 10px; font-size: 13px; font-weight: 600; color: #fff; text-shadow: 0 1px 2px rgba(0,0,0,0.2); white-space: nowrap; }
+
+/* Admin */
+.admin-stats { display: flex; gap: 16px; margin-bottom: 24px; }
+.stat-card { background: #fff; padding: 16px 24px; border-radius: 10px; flex: 1; text-align: center; font-size: 14px; box-shadow: 0 1px 4px rgba(0,0,0,0.04); }
+.stat-card strong { display: block; font-size: 28px; margin-bottom: 4px; }
+.admin-table { width: 100%; border-collapse: collapse; background: #fff; border-radius: 8px; overflow: hidden; margin-bottom: 20px; }
+.admin-table th { background: #f8f9fa; text-align: left; padding: 10px 14px; font-size: 13px; color: #555; }
+.admin-table td { padding: 10px 14px; border-top: 1px solid #eee; font-size: 14px; }
+.inline-form { display: flex; gap: 8px; margin-top: 8px; }
+.inline-form input { flex: 1; padding: 10px 14px; border: 1.5px solid #d4d4d8; border-radius: 8px; font-size: 14px; }
+.inline-form .btn-primary { width: auto; white-space: nowrap; }
+.danger-zone { margin-top: 32px; padding-top: 24px; border-top: 2px solid #ffcccc; }
+.danger-zone h2 { color: #ef233c; font-size: 16px; margin-bottom: 12px; }
+
+section h2 { font-size: 18px; margin-bottom: 12px; margin-top: 24px; }
+section h3 { font-size: 14px; color: #555; margin-bottom: 8px; }

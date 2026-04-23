@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vote - Class Monitor Election</title>
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+  <nav>
+    <span>Class Monitor Election</span>
+    <div>
+      <span class="user-badge"><%= username %></span>
+      <a href="/logout" class="btn-outline-sm">Logout</a>
+    </div>
+  </nav>
+
+  <main class="container">
+    <div class="vote-header">
+      <h1>Cast Your Vote</h1>
+      <div class="turnout">
+        <span><strong><%= votedCount %></strong> / <%= totalVoters %> voted</span>
+        <div class="progress-bar"><div class="progress-fill" style="width:<%= totalVoters > 0 ? (votedCount/totalVoters*100) : 0 %>%"></div></div>
+      </div>
+    </div>
+
+    <% if (error) { %>
+      <div class="alert error"><%= error %></div>
+    <% } %>
+
+    <form method="POST" action="/vote" id="vote-form">
+      <div class="candidate-grid">
+        <% candidates.forEach(function(c) { %>
+          <label class="candidate-card">
+            <input type="radio" name="candidate" value="<%= c.id %>" required>
+            <div class="candidate-info">
+              <span class="candidate-name"><%= c.name %></span>
+            </div>
+          </label>
+        <% }) %>
+      </div>
+
+      <div class="vote-actions">
+        <p class="vote-notice">You can only vote once. This action cannot be undone.</p>
+        <button type="submit" class="btn-primary btn-large" onclick="return confirm('Submit your vote? This cannot be undone.');">
+          Submit Vote
+        </button>
+      </div>
+    </form>
+  </main>
+</body>
+</html>

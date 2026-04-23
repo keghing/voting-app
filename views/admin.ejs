@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin - Class Monitor Election</title>
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+  <nav>
+    <span>Class Monitor Election</span>
+    <div>
+      <a href="/results" class="btn-outline-sm">Results</a>
+      <span class="user-badge"><%= username %></span>
+      <a href="/logout" class="btn-outline-sm">Logout</a>
+    </div>
+  </nav>
+
+  <main class="container">
+    <h1>Admin Panel</h1>
+
+    <% if (locals.error) { %>
+      <div class="alert error"><%= error %></div>
+    <% } %>
+
+    <div class="admin-stats">
+      <div class="stat-card"><strong><%= stats.voters %></strong> Registered Voters</div>
+      <div class="stat-card"><strong><%= stats.votes %></strong> Votes Cast</div>
+    </div>
+
+    <section>
+      <h2>Candidates</h2>
+      <table class="admin-table">
+        <thead><tr><th>ID</th><th>Name</th><th>Created</th><th></th></tr></thead>
+        <tbody>
+          <% candidates.forEach(function(c) { %>
+            <tr>
+              <td><%= c.id %></td>
+              <td><%= c.name %></td>
+              <td><%= c.created_at %></td>
+              <td>
+                <form method="POST" action="/admin/candidates/delete/<%= c.id %>" onsubmit="return confirm('Delete <%= c.name %> and their votes?');">
+                  <button class="btn-danger-sm">Delete</button>
+                </form>
+              </td>
+            </tr>
+          <% }) %>
+        </tbody>
+      </table>
+
+      <h3>Add Candidate</h3>
+      <form method="POST" action="/admin/candidates" class="inline-form">
+        <input type="text" name="name" placeholder="Full name" required>
+        <button class="btn-primary">Add</button>
+      </form>
+    </section>
+
+    <section class="danger-zone">
+      <h2>Danger Zone</h2>
+      <form method="POST" action="/admin/reset" onsubmit="return confirm('Reset ALL votes? This cannot be undone!');">
+        <button class="btn-danger">Reset All Votes</button>
+      </form>
+    </section>
+  </main>
+</body>
+</html>
