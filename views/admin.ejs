@@ -55,6 +55,23 @@
       </form>
     </section>
 
+    <section>
+      <h2>Voters (<%= voters.length %>)</h2>
+      <table class="admin-table">
+        <thead><tr><th>#</th><th>Username</th><th>Voted For</th><th>Registered</th></tr></thead>
+        <tbody>
+          <% voters.forEach(function(v, i) { %>
+            <tr>
+              <td><%= i + 1 %></td>
+              <td><%= v.username %></td>
+              <td><%= v.voted_for || '— Not voted yet' %></td>
+              <td><%= v.created_at %></td>
+            </tr>
+          <% }) %>
+        </tbody>
+      </table>
+    </section>
+
     <section class="danger-zone">
       <h2>Danger Zone</h2>
       <form method="POST" action="/admin/reset" onsubmit="return confirm('Reset ALL votes? This cannot be undone!');">

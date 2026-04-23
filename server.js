@@ -145,7 +145,16 @@ app.get('/admin', requireAuth, requireAdmin, (req, res) => {
     voters: db.prepare('SELECT COUNT(*) as count FROM users WHERE is_admin = 0').get().count,
     votes: db.prepare('SELECT COUNT(*) as count FROM votes').get().count
   };
-  res.render('admin', { candidates, stats, username: req.session.username, error: null });
+  const voters = db.prepare(`
+    SELECT u.id, u.username, u.created_at,
+           c.name as voted_for, v.voted_at
+    FROM users u
+    LEFT JOIN votes v ON v.user_id = u.id
+    LEFT JOIN candidates c ON c.id = v.candidate_id
+    WHERE u.is_admin = 0
+    ORDER BY u.created_at DESC
+  `).all();
+  res.render('admin', { candidates, stats, voters, username: req.session.username, error: null });
 });
 
 app.post('/admin/candidates', requireAuth, requireAdmin, (req, res) => {
