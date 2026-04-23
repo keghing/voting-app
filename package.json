@@ -4,7 +4,7 @@
   "description": "Class Monitor Election Voting System",
   "main": "server.js",
   "scripts": {
-    "start": "node server.js",
+    "start": "node seed.js && node server.js",
     "seed": "node seed.js"
   },
   "dependencies": {
